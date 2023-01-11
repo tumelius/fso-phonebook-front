@@ -4,10 +4,10 @@ const Form = (props) => {
       <h2>Add new</h2>
       <form onSubmit={props.formHanlder}>
         <div>
-          name: <input onChange={props.nameChangeHandler} />
+          name: <input value={props.nameValue} onChange={props.nameChangeHandler} />
         </div>
         <div>
-          number: <input onChange={props.phoneChangeHandler} />
+          number: <input value={props.numberValue} onChange={props.phoneChangeHandler} />
         </div>
         <div>
           <button type="submit">add</button>

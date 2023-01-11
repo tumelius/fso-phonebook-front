@@ -92,7 +92,6 @@ const App = () => {
           setPersons(persons.concat(returnedPerson))
           setNewName('')
           setNewNumber('')
-
         })
         .then(() => {
           console.log('Person added')
@@ -106,8 +105,9 @@ const App = () => {
         })
         .catch(error => {
           console.log('Person not added')
+          console.log(error.response.data)
           setNotification({
-            message: `Could not add ${newName} to the server`, 
+            message: error.response.data.error,
             type: 'error'
           })
           setTimeout(() => {
@@ -115,7 +115,9 @@ const App = () => {
           }, 5000)
         })
     }
-      
+    
+    setNewName('')
+    setNewNumber('')
     // if (persons.filter(person => person.name === newName).length > 0) {
     //   alert(`${newName} is already added to phonebook`)
     //   return
@@ -168,7 +170,9 @@ const App = () => {
       <Form 
         formHanlder={addPerson} 
         nameChangeHandler={getNewName} 
-        phoneChangeHandler={getNewNumber} />
+        phoneChangeHandler={getNewNumber} 
+        nameValue={newName}
+        numberValue={newNumber} />
       <Numbers persons={persons} filter={filter} handleDeleteClick={deletePerson} />
     </div>
   )
